@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>com.circleci.test</module>
+        <module>google-testing</module>
     </modules>
 
     <properties>

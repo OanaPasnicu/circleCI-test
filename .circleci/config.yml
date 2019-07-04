@@ -5,15 +5,19 @@ executors:
   my-executor:
     docker:
       - image: 'circleci/openjdk:11.0.1-jdk-stretch'
+
+jobs:
+  - run:
+      name: Download Chrome Webdriver
+      command: wget -q 'https://chromedriver.storage.googleapis.com/76.0.3809.25/chromedriver_linux64.zip' && \
+          unzip chromedriver_linux64.zip -d /home/circleci/project/ && \
+          chmod 777 /home/circleci/project/chromedriver && \
+          rm -f chromedriver_linux_64.zip
 workflows:
-  maven_test:
+  chrome_download:
     jobs:
-      - run:
-         name: Download Chrome Webdriver
-         command: wget -q 'https://chromedriver.storage.googleapis.com/76.0.3809.25/chromedriver_linux64.zip' && \
-           unzip chromedriver_linux64.zip -d /home/circleci/project/ && \
-           chmod 777 /home/circleci/project/chromedriver && \
-           rm -f chromedriver_linux_64.zip
+      -run
+  maven_test:
       - maven/test:
           executor: my-executor
           settings_file: settings.xml

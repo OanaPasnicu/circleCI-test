@@ -9,7 +9,8 @@ workflows:
   maven_test:
     jobs:
       - maven/test:
+          executor: my-executor
           settings_file: settings.xml
-         executor: my-executor
+
 
 
